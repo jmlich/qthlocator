@@ -35,7 +35,7 @@ Rectangle {
     property double currentPositionAltitude: 0;
     property string currentPositionTime
 
-    property bool rotationEnabled: true
+    property bool rotationEnabled: false
 
     property bool pageActive: true;
 
