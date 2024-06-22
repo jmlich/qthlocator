@@ -108,7 +108,9 @@ MainView {
                 TextField {
                     id: targetLocator
                     width: parent.width / 2
-
+                    onAccepted: {
+                        map.setTargetLocator(targetLocator.text)
+                    }
                 }
                 Button {
                     width: parent.width / 2
