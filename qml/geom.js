@@ -357,6 +357,7 @@ function calcLocator(plon, plat) {
     const lod = '0123456789';
 
     if (lat < 0 || lat > 180 || lon < 0 || lon > 360) {
+        console.log("Invalid input " + plat +"," + plon);
         return "ERROR";
     }
 
@@ -387,28 +388,34 @@ function calcLocator(plon, plat) {
 }
 
 function locatorToLatLon(locator) {
-    if (locator.length !== 8) {
-        return "ERROR";
+    if (locator.length < 4) {
+        return [0, 0];
     }
 
     const loch = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const lod = '0123456789';
 
     // JN
-    let lon = loch.indexOf(locator[0]) * 20;
-    let lat = loch.indexOf(locator[1]) * 10;
+    let lon = loch.indexOf(locator[0].toUpperCase()) * 20;
+    let lat = loch.indexOf(locator[1].toUpperCase()) * 10;
 
     // JN89
     lon += lod.indexOf(locator[2]) * 2;
     lat += lod.indexOf(locator[3]);
 
-    // JN89GE
-    lon += (loch.indexOf(locator[4].toUpperCase()) / 12);
-    lat += (loch.indexOf(locator[5].toUpperCase()) / 24);
+    if (locator.length >= 5) {
 
-    // JN89GE00
-    lon += (lod.indexOf(locator[6]) / 120);
-    lat += (lod.indexOf(locator[7]) / 240);
+        // JN89GE
+        lon += (loch.indexOf(locator[4].toUpperCase()) / 12);
+        lat += (loch.indexOf(locator[5].toUpperCase()) / 24);
+
+    }
+
+    if (locator.length >= 7) {
+        // JN89GE00
+        lon += (lod.indexOf(locator[6]) / 120);
+        lat += (lod.indexOf(locator[7]) / 240);
+    }
 
     lon -= 180;
     lat -= 90;
