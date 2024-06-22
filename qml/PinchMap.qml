@@ -22,9 +22,9 @@ Rectangle {
     property int numTilesX: Math.ceil(width/tileSize) + 2;
     property int numTilesY: Math.ceil(height/tileSize) + 2;
     property int maxTileNo: Math.pow(2, zoomLevelInt) - 1;
-    property bool showTargetIndicator: false
-    property double showTargetAtLat: 0;
-    property double showTargetAtLon: 0;
+    property bool showTargetIndicator: targetIndicator.visible
+    property alias showTargetAtLat: targetIndicator.lat;
+    property alias showTargetAtLon: targetIndicator.lon;
 
 
     property alias currentPositionShow: positionIndicator.visible

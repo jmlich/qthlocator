@@ -1,5 +1,5 @@
 {
-    "name": "qthlocator.com.github.jmlich.qthlocator",
+    "name": "com.github.jmlich.qthlocator",
     "description": "Application which calculates Maidenhead locator system geocode",
     "architecture": "@CLICK_ARCH@",
     "title": "QTH Locator",

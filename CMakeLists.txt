@@ -17,7 +17,7 @@ execute_process(
 set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
 set(PROJECT_NAME "qthlocator")
-set(FULL_PROJECT_NAME "qthlocator.com.github.jmlich.qthlocator")
+set(FULL_PROJECT_NAME "com.github.jmlich.qthlocator")
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 

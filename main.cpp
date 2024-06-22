@@ -25,7 +25,7 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
-    app->setApplicationName("qthlocator.com.github.jmlich.qthlocator");
+    app->setApplicationName("com.github.jmlich.qthlocator");
 
     qDebug() << "Starting app from main.cpp";
 

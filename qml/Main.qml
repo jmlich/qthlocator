@@ -20,12 +20,12 @@ import Lomiri.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 import "geom.js" as G
-
+import QtPositioning 5.12
 
 MainView {
     id: root
     objectName: 'mainView'
-    applicationName: 'qthlocator.com.github.jmlich'
+    applicationName: 'QTH Locator'
     automaticOrientation: true
 
     width: units.gu(45)
@@ -61,7 +61,7 @@ MainView {
                 }
             }
             Label {
-                text: i18n.tr('Latitude: %1').arg(0)
+                text: i18n.tr('Latitude: %1').arg( map.currentPositionShow ? map.currentPositionLat : '??')
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)
@@ -70,7 +70,7 @@ MainView {
                 }
             }
             Label {
-                text: i18n.tr('Longitude: %1').arg(0)
+                text: i18n.tr('Longitude: %1').arg( map.currentPositionShow ? map.currentPositionLon : '??')
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)
@@ -79,7 +79,7 @@ MainView {
                 }
             }
             Label {
-                text: i18n.tr('QTH: %1').arg('')
+                text: i18n.tr('QTH: %1').arg( map.currentPositionShow ? G.calcLocator(map.currentPositionLon, map.currentPositionLat) : '' )
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)
@@ -120,7 +120,9 @@ MainView {
             }
 
             Label {
-                text: i18n.tr('Distance: %1 km').arg('??')
+                text: i18n.tr('Distance: %1 km').arg(map.showTargetIndicator && map.currentPositionShow
+                    ? Math.round( G.getDistanceTo(map.currentPositionLat, map.currentPositionLon, map.showTargetAtLat, map.showTargetAtLon) / 1000.0)
+                    :  '??')
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)
@@ -151,4 +153,29 @@ MainView {
 
 
     }
+
+
+    PositionSource {
+        id: src
+        updateInterval: 1000
+        active: true
+
+        onPositionChanged: {
+
+//                map.currentPositionShow = true
+//                map.currentPositionLat = 49.1
+//                map.currentPositionLon = 16.1
+//                return
+
+            var coord = src.position.coordinate;
+            console.log("Coordinate:", coord.longitude, coord.latitude);
+
+            map.currentPositionShow = valid;
+            if (valid) {
+                map.currentPositionLat = coord.latitude
+                map.currentPositionLon = coord.longitude
+            }
+        }
+    }
+
 }
