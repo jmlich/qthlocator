@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the qthlocator.com.github.jmlich.qthlocator package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: qthlocator.com.github.jmlich.qthlocator\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-22 17:30+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../qml/Main.qml:39 qthlocator.desktop.in.h:1
+msgid "QTH Locator"
+msgstr ""
+
+#: ../qml/Main.qml:54
+msgid "Current position"
+msgstr ""
+
+#: ../qml/Main.qml:64
+msgid "Latitude: %1"
+msgstr ""
+
+#: ../qml/Main.qml:73
+msgid "Longitude: %1"
+msgstr ""
+
+#: ../qml/Main.qml:82
+msgid "QTH: %1"
+msgstr ""
+
+#: ../qml/Main.qml:92
+msgid "Find"
+msgstr ""
+
+#: ../qml/Main.qml:115
+msgid "Search"
+msgstr ""
+
+#: ../qml/Main.qml:123
+msgid "Distance: %1 km"
+msgstr ""
+
+#: ../qml/PinchMap.qml:364
+msgid "Ready"
+msgstr ""
+
+#: ../qml/PinchMap.qml:366
+msgid "Not set"
+msgstr ""
+
+#: ../qml/PinchMap.qml:368
+msgid "Error"
+msgstr ""
+
+#: ../qml/PinchMap.qml:370
+msgid "Loading ..."
+msgstr ""
+
+#: ../qml/PinchMap.qml:372
+msgid "Unknown error"
+msgstr ""

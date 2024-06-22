@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Main.qml</file>
+        <file>PinchMap.qml</file>
+        <file>Waypoint.qml</file>
+
+        <file>geom.js</file>
+
+        <file>images/target-indicator-cross-blue.png</file>
+        <file>images/target-indicator-cross.png</file>
+        <file>images/Diamond_Blue.png</file>
+        <file>images/noimage.png</file>
+        <file>images/noimage-disabled.png</file>
+    </qresource>
+</RCC>
