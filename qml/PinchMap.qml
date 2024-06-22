@@ -543,32 +543,14 @@ Rectangle {
             }
 
             onDoubleClicked: {
-                if (mouse.button == Qt.RightButton) {
-                    return;
-                }
 
-                // selection of item from pointsList
-                if (filterCupData === 0) { // if tab == points
-                    //                    var c = getCoordFromScreenpoint(mouse.x, mouse.y)
+                    var click_coord = getCoordFromScreenpoint(mouse.x,mouse.y)
 
-                    var minDistance = 20; // px
-                    var minIndex = -1;
+                    currentPositionLat = click_coord[0]
+                    currentPositionLon = click_coord[1]
+                    currentPositionShow = true
 
-                    for (var i = 0; i < pointsListModel.count; i++) {
-                        var item = pointsListModel.get(i);
-                        var screen = getScreenpointFromCoord(item.lat, item.lon)
-                        var distance = G.euclidDistance(screen[0], screen[1], mouse.x, mouse.y);
-                        //                                G.getDistanceTo(item.lat, item.lon, c[0], c[1]);
-                        if (distance < minDistance) {
-                            minIndex = i;
-                            minDistance = distance;
-                        }
-                    }
-                    if (minIndex !== -1) {
-                        var item = pointsListModel.get(minIndex);
-                        pointselectedFromMap(item.pid);
-                    }
-                }
+                    console.log(click_coord[0], click_coord[1], G.calcLocator(click_coord[1], click_coord[0]))
 
             }
 
@@ -598,15 +580,6 @@ Rectangle {
 
                     // pri kliknuti do mapy
 
-                    var click_coord = getCoordFromScreenpoint(mouse.x,mouse.y)
-                    var minDist = G.earth_radius;
-                    var minIndex = 0;
-                    var item, i, nextItem;
-
-//                    targetIndicator.lat = click_coord[0]
-//                    targetIndicator.lon = click_coord[1]
-
-                    console.log(click_coord[0], click_coord[1], G.calcLocator(click_coord[1], click_coord[0]))
  
                 __isPanning = false;
                 __isDragingPoint = false;

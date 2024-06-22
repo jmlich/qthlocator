@@ -120,7 +120,7 @@ MainView {
             }
 
             Label {
-                text: i18n.tr('Distance: %1 km').arg(map.showTargetIndicator && map.currentPositionShow
+                text: i18n.tr('Distance: %1 km').arg( (map.showTargetIndicator && map.currentPositionShow)
                     ? Math.round( G.getDistanceTo(map.currentPositionLat, map.currentPositionLon, map.showTargetAtLat, map.showTargetAtLon) / 1000.0)
                     :  '??')
                 anchors {
@@ -143,7 +143,7 @@ MainView {
             }
             clip: true
             url: "https://%(s)d.tile.openstreetmap.org/%(zoom)d/%(x)d/%(y)d.png";
-            url_subdomains: ['a','b', 'c'];
+            url_subdomains: ['a', 'b', 'c'];
             maxZoomLevel: 19
             attribution: "data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, " +
                     "<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, " +
@@ -168,10 +168,10 @@ MainView {
 //                return
 
             var coord = src.position.coordinate;
-            console.log("Coordinate:", coord.longitude, coord.latitude);
+            console.log("Valid: " + valid + " Coordinate:", coord.longitude, coord.latitude);
 
-            map.currentPositionShow = valid;
-            if (valid) {
+            map.currentPositionShow = valid && !isNaN(coord.latitude);
+            if (map.currentPositionShow) {
                 map.currentPositionLat = coord.latitude
                 map.currentPositionLon = coord.longitude
             }
