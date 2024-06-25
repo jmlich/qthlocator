@@ -22,9 +22,7 @@ Rectangle {
     property int numTilesX: Math.ceil(width/tileSize) + 2;
     property int numTilesY: Math.ceil(height/tileSize) + 2;
     property int maxTileNo: Math.pow(2, zoomLevelInt) - 1;
-    property bool showTargetIndicator: targetIndicator.visible
-    property alias showTargetAtLat: targetIndicator.lat;
-    property alias showTargetAtLon: targetIndicator.lon;
+    property variant targetRect: []
 
 
     property alias currentPositionShow: positionIndicator.visible
@@ -108,6 +106,7 @@ Rectangle {
         if (pageActive && needsUpdate) {
             needsUpdate = false;
             pinchmap.setCenterLatLon(pinchmap.latitude, pinchmap.longitude);
+            canvas.requestPaint()
         }
     }
     
@@ -116,6 +115,7 @@ Rectangle {
             needsUpdate = true;
         } else {
             pinchmap.setCenterLatLon(pinchmap.latitude, pinchmap.longitude);
+            canvas.requestPaint()
         }
     }
 
@@ -124,14 +124,7 @@ Rectangle {
             needsUpdate = true;
         } else {
             pinchmap.setCenterLatLon(pinchmap.latitude, pinchmap.longitude);
-        }
-    }
-
-
-
-    onShowTargetAtLatChanged: {
-        if (!pageActive) {
-            needsUpdate = true;
+            canvas.requestPaint()
         }
     }
 
@@ -218,12 +211,14 @@ Rectangle {
         var l = getCenter()
         longitude = l[1]
         latitude = l[0]
+        canvas.requestPaint()
 
     }
 
     function requestUpdate() {
         var start = getCoordFromScreenpoint(0,0)
         var end = getCoordFromScreenpoint(pinchmap.width,pinchmap.height)
+        canvas.requestPaint()
 
         console.debug("Update requested.")
     }
@@ -375,10 +370,20 @@ Rectangle {
 
     function setTargetLocator(locatorName) {
         var lonLat = G.locatorToLatLon(locatorName)
-        targetIndicator.lat = lonLat[1];
-        targetIndicator.lon = lonLat[0];
-        pinchmap.setCenterLatLon(targetIndicator.lat, targetIndicator.lon)
+        targetRect = lonLat;
+
+        if (currentPositionShow) {
+            var zoomBounds = [ 
+                Math.min(lonLat[1], lonLat[3], currentPositionLat), Math.min(lonLat[0], lonLat[0], currentPositionLon),
+                Math.max(lonLat[1], lonLat[3], currentPositionLat), Math.max(lonLat[0], lonLat[0], currentPositionLon)
+            ]
+            zoomToBounds(zoomBounds[0], zoomBounds[1], zoomBounds[2], zoomBounds[3]);
+
+        } else {
+            zoomToBounds(lonLat[1], lonLat[0], lonLat[3], lonLat[2]);
+        }
     }
+
 
 
     Grid {
@@ -473,17 +478,43 @@ Rectangle {
         visible: false;
     }
 
-    Waypoint {
-        id: targetIndicator
-        waypointType: "target-indicator-cross-blue"
-        property double lat: 0
-        property double lon: 0
-        targetPoint: getMappointFromCoord(lat, lon)
-        azimuth: currentPositionAzimuth
-        mapx: map.x
-        mapy: map.y
-        visible: lat !== 0 || lon !== 0;
+    Canvas {
+        id: canvas
+        x: map.x
+        y: map.y
+        width: map.width
+        height: map.height
+        renderStrategy: Canvas.Cooperative
+
+        onPaint: {
+
+            console.time("canvas-onPaint")
+
+            var ctx = canvas.getContext("2d");
+            ctx.save();
+            ctx.lineCap = "butt"
+            ctx.lineJoin = "bevel"
+            ctx.lineWidth = 2;
+            ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+            if ( targetRect.length == 4 && targetRect[0] != 0 && targetRect[1] != 0 && targetRect[2] != 0 && targetRect[3] != 0) {
+
+                var screenPoint1 = getMappointFromCoord(targetRect[1], targetRect[0])
+                var screenPoint2 = getMappointFromCoord(targetRect[3], targetRect[2])
+                var first = [ screenPoint1[0] < screenPoint2[0] ? screenPoint1[0] : screenPoint2[0] , screenPoint1[1] < screenPoint2[1] ? screenPoint1[1] : screenPoint2[1] ]
+                var second = [ screenPoint1[0] > screenPoint2[0] ? screenPoint1[0] : screenPoint2[0] , screenPoint1[1] > screenPoint2[1] ? screenPoint1[1] : screenPoint2[1] ]
+
+                ctx.strokeStyle="#ff0000"
+                ctx.beginPath();
+                ctx.strokeRect(first[0], first[1], second[0]-first[0], second[1]-first[1]);
+            }
+
+            console.timeEnd("canvas-onPaint")
+
+
+        }
     }
+
 
 
     PinchArea {

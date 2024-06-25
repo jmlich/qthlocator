@@ -122,8 +122,8 @@ MainView {
             }
 
             Label {
-                text: i18n.tr('Distance: %1 km').arg( (map.showTargetIndicator && map.currentPositionShow)
-                    ? Math.round( G.getDistanceTo(map.currentPositionLat, map.currentPositionLon, map.showTargetAtLat, map.showTargetAtLon) / 1000.0)
+                text: i18n.tr('Distance: %1 km').arg( ( map.currentPositionShow && map.targetRect.length > 0 && map.targetRect[0] != 0 && map.targetRect[1] != 0  )
+                    ? Math.round( G.getDistanceTo(map.currentPositionLat, map.currentPositionLon, (map.targetRect[1]+map.targetRect[3])/2, (map.targetRect[0]+map.targetRect[2])/2 ) / 1000.0)
                     :  '??')
                 anchors {
                     left: parent.left

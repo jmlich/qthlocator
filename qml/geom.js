@@ -403,11 +403,17 @@ function locatorToLatLon(locator) {
     lon += lod.indexOf(locator[2]) * 2;
     lat += lod.indexOf(locator[3]);
 
+    let lon2 = lon + 2;
+    let lat2 = lat + 1;
+
     if (locator.length >= 5) {
 
         // JN89GE
         lon += (loch.indexOf(locator[4].toUpperCase()) / 12);
         lat += (loch.indexOf(locator[5].toUpperCase()) / 24);
+
+        lon2 = lon + (1 / 12);
+        lat2 = lat + (1 / 24);
 
     }
 
@@ -415,12 +421,18 @@ function locatorToLatLon(locator) {
         // JN89GE00
         lon += (lod.indexOf(locator[6]) / 120);
         lat += (lod.indexOf(locator[7]) / 240);
+
+        lon2 = lon + (1 / 120);
+        lat2 = lat + (1 / 240);
     }
 
     lon -= 180;
     lat -= 90;
 
-    return [lon, lat];
+    lon2 -= 180;
+    lat2 -= 90;
+
+    return [lon, lat, lon2, lat2];
 }
 
 function testAll() {
