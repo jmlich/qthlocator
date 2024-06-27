@@ -108,7 +108,8 @@ MainView {
                 TextField {
                     id: targetLocator
                     width: parent.width / 2
-                    inputMethodHints: Qt.ImhUppercaseOnly
+                    inputMethodHints: Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
+                    font.capitalization: Font.AllUppercase
                     onAccepted: {
                         map.setTargetLocator(targetLocator.text)
                     }
