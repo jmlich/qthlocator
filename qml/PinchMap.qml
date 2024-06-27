@@ -372,6 +372,10 @@ Rectangle {
         var lonLat = G.locatorToLatLon(locatorName)
         targetRect = lonLat;
 
+        if ((lonLat[0] == 0) && (lonLat[1] == 0)) { // don't zoom when empty
+            return;
+        }
+
         if (currentPositionShow) {
             var zoomBounds = [ 
                 Math.min(lonLat[1], lonLat[3], currentPositionLat), Math.min(lonLat[0], lonLat[0], currentPositionLon),
