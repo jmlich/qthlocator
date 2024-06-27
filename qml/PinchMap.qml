@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-only
+
 import QtQuick 2.9
 //import "functions.js" as F
 import "geom.js" as G

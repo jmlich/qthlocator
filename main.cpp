@@ -1,4 +1,6 @@
 /*
+ * SPDX-License-Identifier: GPL-3.0-only
+ *
  * Copyright (C) 2024  Jozef Mlich
  *
  * This program is free software: you can redistribute it and/or modify

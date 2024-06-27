@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: GPL-3.0-only
+
 .pragma library
 
 var earth_radius = 6371000;

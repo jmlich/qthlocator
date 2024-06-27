@@ -1,4 +1,6 @@
 /*
+ * SPDX-License-Identifier: GPL-3.0-only
+ *
  * Copyright (C) 2024  Jozef Mlich
  *
  * This program is free software: you can redistribute it and/or modify
@@ -79,7 +81,9 @@ MainView {
                 }
             }
             Label {
-                text: i18n.tr('QTH: %1').arg( map.currentPositionShow ? G.calcLocator(map.currentPositionLon, map.currentPositionLat) : '' )
+                id: gpsLocator
+                property string gpsLocatorValue: map.currentPositionShow ? G.calcLocator(map.currentPositionLon, map.currentPositionLat) : ''
+                text: i18n.tr('QTH: %1').arg( gpsLocatorValue )
                 anchors {
                     left: parent.left
                     leftMargin: units.gu(2)
