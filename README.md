@@ -1,6 +1,12 @@
 # QTH Locator
 
-Application which calculates Maidenhead locator system geocode
+This application calculates the Maidenhead Locator System (also known as
+QTH Locator or IARU Locator) geocode from your GPS position. It is used
+by amateur radio operators to accurately and succinctly describe their
+geographic coordinates.
+
+- [Translate](https://app.transifex.com/jozef-mlich/qthlocator/dashboard/)
+- [Install from Open-Store](https://open-store.io/app/com.github.jmlich.qthlocator)
 
 ## License
 
