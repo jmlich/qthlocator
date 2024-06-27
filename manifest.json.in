@@ -9,7 +9,7 @@
             "desktop":  "qthlocator.desktop"
         }
     },
-    "version": "1.0.1",
+    "version": "1.0.2",
     "maintainer": "Jozef Mlich <jmlich83@gmail.com>",
     "framework" : "@CLICK_FRAMEWORK@"
 }
