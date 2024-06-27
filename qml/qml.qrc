@@ -3,6 +3,8 @@
         <file>Main.qml</file>
         <file>PinchMap.qml</file>
         <file>Waypoint.qml</file>
+        <file>AddToLogPage.qml</file>
+        <file>LogPage.qml</file>
 
         <file>geom.js</file>
 
