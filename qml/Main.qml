@@ -191,7 +191,8 @@ MainView {
                         var record = {
                             qsoDateTime: new Date(),
                             myGridSquare: gpsLocator.gpsLocatorValue,
-                            stationGridSquare: targetLocator.text
+                            stationGridSquare: targetLocator.text,
+                            myAltitude: positionSource.position.coordinate.altitude
                         }
                         console.log("Open AddToLogPage: " + JSON.stringify(record, 0, 2));
                         pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), record);
@@ -223,13 +224,13 @@ MainView {
     }
 
     PositionSource {
-        id: src
+        id: positionSource
         updateInterval: 1000
         active: true
 
         onPositionChanged: {
 
-            var coord = src.position.coordinate;
+            var coord = positionSource.position.coordinate;
             console.log("Valid: " + valid + " Coordinate:", coord.longitude, coord.latitude);
             map.currentPositionShow = valid && !isNaN(coord.latitude);
             if (map.currentPositionShow) {
