@@ -27,7 +27,7 @@ import QtPositioning 5.12
 MainView {
     id: root
     objectName: 'mainView'
-    applicationName: 'QTH Locator'
+    applicationName: 'com.github.jmlich.qthlocator'
     automaticOrientation: true
 
     width: units.gu(45)
