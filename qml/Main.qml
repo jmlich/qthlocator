@@ -23,6 +23,7 @@ import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 import "geom.js" as G
 import QtPositioning 5.12
+import com.github.jmlich.qthlocator 1.0
 
 MainView {
     id: root
@@ -32,6 +33,39 @@ MainView {
 
     width: units.gu(45)
     height: units.gu(75)
+
+    ListModel {
+        id: logModel
+
+        onDataChanged: {
+            console.log("logModel changed " + count)
+        }
+
+        function save() {
+            var arr = []
+            for (var i = 0; i < count; i++) {
+                var item = get(i);
+                arr.push(item);
+            }
+            console.log(JSON.stringify(arr));
+            QthLocatorConfig.logModel = JSON.stringify(arr)
+        }
+
+        function load() {
+            var data = JSON.parse(QthLocatorConfig.logModel)
+
+            logModel.clear()
+            for (var i = 0; i < data.length; i++) {
+                logModel.append(data[i]);
+            }
+        }
+    }
+
+
+    Component.onCompleted: {
+        logModel.load()
+    }
+
 
     PageStack {
         id: pageStack
@@ -192,11 +226,6 @@ MainView {
         active: true
 
         onPositionChanged: {
-
-            //                map.currentPositionShow = true
-            //                map.currentPositionLat = 49.1
-            //                map.currentPositionLon = 16.1
-            //                return
 
             var coord = src.position.coordinate;
             console.log("Valid: " + valid + " Coordinate:", coord.longitude, coord.latitude);

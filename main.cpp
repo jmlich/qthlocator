@@ -23,6 +23,7 @@
 #include <QQuickView>
 #include <QQmlEngine>
 #include "networkaccessmanagerfactory.h"
+#include "qthlocatorconfig.h"
 
 int main(int argc, char *argv[])
 {
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
 
     NetworkAccessManagerFactory namFactory;
 
+    qmlRegisterSingletonType<QthLocatorConfig>("com.github.jmlich.qthlocator", 1, 0, "QthLocatorConfig", QthLocatorConfig::qmlInstance);
 
     QQuickView *view = new QQuickView();
     QQmlEngine* engine = view->engine();

@@ -57,6 +57,7 @@ Page {
         }
 
         TextField {
+            id: callSign
             text: "Pepa Kurim"
         }
 
@@ -75,6 +76,7 @@ Page {
         }
 
         TextField {
+            id: devType
             text: "portable"
         }
 
@@ -83,6 +85,7 @@ Page {
         }
 
         TextField {
+            id: devBand
             text: "PMR"
         }
 
@@ -93,9 +96,31 @@ Page {
         TextField {
             id: destinationLocator
         }
+
+        Label {
+            text: i18n.tr('Note')
+        }
+
+        TextArea {
+            id: note
+        }
+
         Button {
             text: i18n.tr('Save')
             onClicked: {
+
+                logModel.insert(0, {
+                    sourceLocator: sourceLocator.text,
+                    callSign: callSign.text,
+                    dateTime: dateTime.connDate,
+                    commType: devType.text,
+                    radioBand: devBand.text,
+                    locator: destinationLocator.text,
+                    note: note.text,
+                })
+
+                logModel.save();
+
                 pageStack.pop();
             }
         }

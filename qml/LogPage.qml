@@ -38,109 +38,6 @@ Page {
         ]
     }
 
-    ListModel {
-        id: logModel
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-01 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89EE"
-            note: "My first log"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-02 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89FF"
-            note: "Second log"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-03 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89DD"
-            note: "Third log"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-        ListElement {
-            sourceLocator: "JN89GE"
-            callSign: "Pepa Kuřim"
-            dateTime: "2024-01-04 12:00:00"
-            commType: "portable"
-            radioBand: "PMR"
-            locator: "JN89QQ"
-            note: "Other"
-        }
-    }
-
     ListView {
         anchors.top: pageHeader.bottom
         anchors.bottom: parent.bottom
@@ -165,6 +62,7 @@ Page {
                         iconName: "delete"
                         onTriggered: {
                             console.log("delete " + index);
+                            logModel.remove(index, 1)
                         }
                     }
                 ]

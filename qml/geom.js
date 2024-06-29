@@ -449,8 +449,8 @@ function testAll() {
     var locator1_lonLat = locatorToLatLon(locator1_ref)
     var locator2_lonLat = locatorToLatLon(locator2_ref)
 
-    console.log ( "calcLocator test Kohoutovice: " +  ((locator1_ref == locator1) ? "OK" : "FAILED " + locator1 + " != " + locator1_ref ))
-    console.log ( "calcLocator test Vsemina: " +  ((locator2_ref == locator2 ) ? "OK" : "FAILED "+ locator2 +" != " + locator2_ref ))
+    console.log ( "test calcLocator Kohoutovice: " +  ((locator1_ref == locator1) ? "OK" : "FAILED " + locator1 + " != " + locator1_ref ))
+    console.log ( "test calcLocator Vsemina: " +  ((locator2_ref == locator2 ) ? "OK" : "FAILED "+ locator2 +" != " + locator2_ref ))
 
 
     console.log("test locatorToLatLon: " + locator1_ref + " " + locatorToLatLon(locator1_ref) )
