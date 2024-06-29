@@ -28,8 +28,8 @@ import com.github.jmlich.qthlocator 1.0
 Page {
     id: addToLogPage
 
-    property int id // row index
-    property alias qshDateTime: qsoDateTime.value;
+    property int rowIndex: -1
+    property alias qsoDateTime: qsoDateTime.value;
     property alias band: band.text;
     property alias myCallSign: myCallSign.text;
     property alias myLocation: myLocation.text;
@@ -72,8 +72,8 @@ Page {
 
         TextField {
             id: band
-            text: QthLocatorConfig.lastBand
-            placeholderText: i18n.tr("e.g. PMR/UHF")
+//            text: QthLocatorConfig.lastBand
+//            placeholderText: i18n.tr("e.g. PMR/UHF")
         }
 
         Label {
@@ -82,7 +82,7 @@ Page {
 
         TextField {
             id: myCallSign
-            text: QthLocatorConfig.lastMyCallSign
+//            text: QthLocatorConfig.lastMyCallSign
         }
 
         Label {
@@ -91,8 +91,8 @@ Page {
 
         TextField {
             id: myLocation
-            text: QthLocatorConfig.lastMyLocation
-            placeholderText: i18n.tr("e.g. home/mobile/portable")
+//            text: QthLocatorConfig.lastMyLocation
+//            placeholderText: i18n.tr("e.g. home/mobile/portable")
         }
 
         Label {
@@ -101,8 +101,8 @@ Page {
 
         TextField {
             id: myPlace
-            text: QthLocatorConfig.lastMyPlace
-            placeholderText: i18n.tr("e.g. Mount Everest")
+//            text: QthLocatorConfig.lastMyPlace
+//            placeholderText: i18n.tr("e.g. Mount Everest")
         }
 
         Label {
@@ -110,7 +110,7 @@ Page {
         }
         TextField {
             id: myAltitude
-            placeholderText: i18n.tr("in meters")
+//            placeholderText: i18n.tr("in meters")
         }
 
 
@@ -119,7 +119,9 @@ Page {
         }
         TextField {
             id: myGridSquare
-            placeholderText: i18n.tr("e.g. JN89GE")
+            inputMethodHints: Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
+            font.capitalization: Font.AllUppercase
+//            placeholderText: i18n.tr("e.g. JN89GE")
         }
 
 
@@ -139,8 +141,8 @@ Page {
 
         TextField {
             id: stationLocation
-            text: QthLocatorConfig.lastStationLocation
-            placeholderText: i18n.tr("e.g. home/mobile/portable")
+//            text: QthLocatorConfig.lastStationLocation
+//            placeholderText: i18n.tr("e.g. home/mobile/portable")
         }
 
         Label {
@@ -149,7 +151,7 @@ Page {
 
         TextField {
             id: stationPlace
-            placeholderText: i18n.tr("e.g. Mont Blanc")
+//            placeholderText: i18n.tr("e.g. Mont Blanc")
         }
 
 
@@ -159,7 +161,9 @@ Page {
 
         TextField {
             id: stationGridSquare
-            placeholderText: i18n.tr("e.g. JN89GE")
+            inputMethodHints: Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
+            font.capitalization: Font.AllUppercase
+//            placeholderText: i18n.tr("e.g. JN89GE")
         }
 
 
@@ -182,21 +186,27 @@ Page {
                 QthLocatorConfig.lastStationLocation = stationLocation.text
 
                 var modelRow = {
-                    qshDateTime: qsoDateTime.value,
+                    qsoDateTime: qsoDateTime.value,
                     band: band.text,
                     myCallSign: myCallSign.text,
                     myLocation: myLocation.text,
                     myPlace: myPlace.text,
                     myAltitude: myAltitude.text,
-                    myGridSquare: myGridSquare.text,
+                    myGridSquare: myGridSquare.text.toUpperCase(),
                     stationCallSign: stationCallSign.text,
                     stationPlace: stationPlace.text,
-                    stationGridSquare: stationGridSquare.text,
+                    stationGridSquare: stationGridSquare.text.toUpperCase(),
                     stationLocation: stationLocation.text,
                     comment: comment.text,
                 }
 
-                logModel.insert(0, modelRow)
+                if (rowIndex < 0) {
+                    logModel.insert(0, modelRow)
+                } else {
+                    logModel.set(rowIndex, modelRow)
+                }
+
+
 
                 logModel.save();
 

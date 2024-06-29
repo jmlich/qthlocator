@@ -47,6 +47,7 @@ MainView {
                 var item = get(i);
                 arr.push(item);
             }
+//            console.log(JSON.stringify(arr, 0, 2))
             QthLocatorConfig.logModel = JSON.stringify(arr)
         }
 
@@ -187,11 +188,13 @@ MainView {
                     text: i18n.tr('Add to log')
                     enabled: (targetLocator.text !== '') && (map.currentPositionShow)
                     onClicked: {
-                        console.log("Open page" + gpsLocator.gpsLocatorValue + " " + targetLocator.text);
-                        pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), {
+                        var record = {
+                            qsoDateTime: new Date(),
                             myGridSquare: gpsLocator.gpsLocatorValue,
                             stationGridSquare: targetLocator.text
-                        });
+                        }
+                        console.log("Open AddToLogPage: " + JSON.stringify(record, 0, 2));
+                        pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), record);
                     }
                     anchors {
                         left: parent.left

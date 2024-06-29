@@ -53,10 +53,16 @@ Page {
                 title.text: 
                     myGridSquare + (( myGridSquare != "" && stationGridSquare != "") ? " → " : "" ) + stationGridSquare
                     + ((stationCallSign != "") ? " (" + stationCallSign + ")" : "")
-                subtitle.text: qshDateTime
+                subtitle.text: qsoDateTime
                 summary.text: comment
             }
-            onClicked: pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), logModel.get(index))
+            onClicked: {
+                var record = logModel.get(index)
+                record = JSON.parse(JSON.stringify(record)) // without this ugly hack the rowIndex cannot be added and values are not visible in AddToLogPage
+                record.rowIndex = index
+//                console.log("AddToLogPage -> " + JSON.stringify(record, 0, 2))
+                pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), record)
+            }
             leadingActions: ListItemActions {
                 actions: [
                     Action {
