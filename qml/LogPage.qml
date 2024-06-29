@@ -27,6 +27,7 @@ Page {
     header: PageHeader {
         id: pageHeader
         title: i18n.tr('Log')
+/*
         trailingActionBar.actions: [
             Action {
                 iconName: "document-save"
@@ -36,6 +37,7 @@ Page {
                 }
             }
         ]
+*/
     }
 
     ListView {
@@ -48,21 +50,21 @@ Page {
             height: layout.height + (divider.visible ? divider.height : 0)
             ListItemLayout {
                 id: layout
-                title.text: sourceLocator + " → " + locator
-                subtitle.text: dateTime
-                summary.text: note
+                title.text: 
+                    myGridSquare + (( myGridSquare != "" && stationGridSquare != "") ? " → " : "" ) + stationGridSquare
+                    + ((stationCallSign != "") ? " (" + stationCallSign + ")" : "")
+                subtitle.text: qshDateTime
+                summary.text: comment
             }
-            onClicked: pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), {
-                gpsLocator: sourceLocator,
-                targetLocator: locator
-            })
+            onClicked: pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), logModel.get(index))
             leadingActions: ListItemActions {
                 actions: [
                     Action {
                         iconName: "delete"
                         onTriggered: {
                             console.log("delete " + index);
-                            logModel.remove(index, 1)
+                            logModel.remove(index, 1);
+                            logModel.save()
                         }
                     }
                 ]

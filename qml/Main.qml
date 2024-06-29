@@ -47,7 +47,6 @@ MainView {
                 var item = get(i);
                 arr.push(item);
             }
-            console.log(JSON.stringify(arr));
             QthLocatorConfig.logModel = JSON.stringify(arr)
         }
 
@@ -190,8 +189,8 @@ MainView {
                     onClicked: {
                         console.log("Open page" + gpsLocator.gpsLocatorValue + " " + targetLocator.text);
                         pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), {
-                            gpsLocator: gpsLocator.gpsLocatorValue,
-                            targetLocator: targetLocator.text
+                            myGridSquare: gpsLocator.gpsLocatorValue,
+                            stationGridSquare: targetLocator.text
                         });
                     }
                     anchors {

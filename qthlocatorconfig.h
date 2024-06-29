@@ -67,6 +67,11 @@ public:
     void setValue(const QString &key, const QVariant &value);
 
     STRING_OPTION(QStringLiteral("logModel"), logModel, setLogModel, QString("[]"))
+    STRING_OPTION(QStringLiteral("lastBand"), lastBand, setLastBand, QString("PMR"))
+    STRING_OPTION(QStringLiteral("lastMyCallSign"), lastMyCallSign, setLastMyCallSign, QString(""))
+    STRING_OPTION(QStringLiteral("lastMyLocation"), lastMyLocation, setLastMyLocation, QString("portable"))
+    STRING_OPTION(QStringLiteral("lastMyPlace"), lastMyPlace, setLastMyPlace, QString(""))
+    STRING_OPTION(QStringLiteral("lastStationLocation"), lastStationLocation, setLastStationLocation, QString("portable"))
 
 private:
     using signal_ptr = void(QthLocatorConfig::*)();

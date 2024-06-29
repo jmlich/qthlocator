@@ -21,15 +21,26 @@ import Lomiri.Components 1.3
 import Lomiri.Components.Pickers 1.3
 //import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import Qt.labs.settings 1.0
 import "geom.js" as G
-import QtPositioning 5.12
+import com.github.jmlich.qthlocator 1.0
+
 
 Page {
     id: addToLogPage
 
-    property alias gpsLocator: sourceLocator.text
-    property alias targetLocator: destinationLocator.text
+    property int id // row index
+    property alias qshDateTime: qsoDateTime.value;
+    property alias band: band.text;
+    property alias myCallSign: myCallSign.text;
+    property alias myLocation: myLocation.text;
+    property alias myPlace: myPlace.text;
+    property alias myAltitude: myAltitude.text;
+    property alias myGridSquare: myGridSquare.text;
+    property alias stationCallSign: stationCallSign.text;
+    property alias stationPlace: stationPlace.text;
+    property alias stationGridSquare: stationGridSquare.text;
+    property alias stationLocation: stationLocation.text;
+    property alias comment: comment.text;
 
     header: PageHeader {
         id: pageHeader
@@ -46,10 +57,23 @@ Page {
         anchors.margins: units.gu(1)
 
         Label {
-            text: i18n.tr('Your position')
+            text: i18n.tr('Date and Time')
         }
+
         TextField {
-            id: sourceLocator
+            id: qsoDateTime
+            property date value: new Date()
+            text: value.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + " " + value.toLocaleTimeString(Qt.locale, Locale.ShortFormat)
+        }
+
+        Label {
+            text: i18n.tr('Band')
+        }
+
+        TextField {
+            id: band
+            text: QthLocatorConfig.lastBand
+            placeholderText: i18n.tr("e.g. PMR/UHF")
         }
 
         Label {
@@ -57,67 +81,122 @@ Page {
         }
 
         TextField {
-            id: callSign
-            text: "Pepa Kurim"
+            id: myCallSign
+            text: QthLocatorConfig.lastMyCallSign
         }
 
         Label {
-            text: i18n.tr('Time')
+            text: i18n.tr('Your type')
         }
 
         TextField {
-            id: dateTime
-            property date connDate: new Date()
-            text: connDate.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + " " + connDate.toLocaleTimeString(Qt.locale, Locale.ShortFormat)
+            id: myLocation
+            text: QthLocatorConfig.lastMyLocation
+            placeholderText: i18n.tr("e.g. home/mobile/portable")
         }
 
         Label {
-            text: i18n.tr('Type')
+            text: i18n.tr('Your place')
         }
 
         TextField {
-            id: devType
-            text: "portable"
+            id: myPlace
+            text: QthLocatorConfig.lastMyPlace
+            placeholderText: i18n.tr("e.g. Mount Everest")
         }
 
         Label {
-            text: i18n.tr('Radio band')
+            text: i18n.tr('Your altitude')
+        }
+        TextField {
+            id: myAltitude
+            placeholderText: i18n.tr("in meters")
+        }
+
+
+        Label {
+            text: i18n.tr('Your locator')
+        }
+        TextField {
+            id: myGridSquare
+            placeholderText: i18n.tr("e.g. JN89GE")
+        }
+
+
+        Label {
+            text: i18n.tr('Station call sign')
         }
 
         TextField {
-            id: devBand
-            text: "PMR"
+            id: stationCallSign
+            text: ""
         }
 
         Label {
-            text: i18n.tr('Locator')
+            text: i18n.tr('Station type')
+        }
+
+
+        TextField {
+            id: stationLocation
+            text: QthLocatorConfig.lastStationLocation
+            placeholderText: i18n.tr("e.g. home/mobile/portable")
+        }
+
+        Label {
+            text: i18n.tr('Station place')
         }
 
         TextField {
-            id: destinationLocator
+            id: stationPlace
+            placeholderText: i18n.tr("e.g. Mont Blanc")
         }
 
+
         Label {
-            text: i18n.tr('Note')
+            text: i18n.tr('Station Locator')
+        }
+
+        TextField {
+            id: stationGridSquare
+            placeholderText: i18n.tr("e.g. JN89GE")
+        }
+
+
+        Label {
+            text: i18n.tr('Comment')
         }
 
         TextArea {
-            id: note
+            id: comment
         }
 
         Button {
             text: i18n.tr('Save')
             onClicked: {
 
-                logModel.insert(0, {
-                    sourceLocator: sourceLocator.text,
-                    callSign: callSign.text,
-                    dateTime: dateTime.connDate,
-                    commType: devType.text,
-                    radioBand: devBand.text,
-                    locator: destinationLocator.text,
-                    note: note.text,
-                })
+                QthLocatorConfig.lastBand = band.text
+                QthLocatorConfig.lastMyCallSign = myCallSign.text
+                QthLocatorConfig.lastMyLocation = myLocation.text
+                QthLocatorConfig.lastMyPlace = myPlace.text
+                QthLocatorConfig.lastStationLocation = stationLocation.text
+
+                var modelRow = {
+                    qshDateTime: qsoDateTime.value,
+                    band: band.text,
+                    myCallSign: myCallSign.text,
+                    myLocation: myLocation.text,
+                    myPlace: myPlace.text,
+                    myAltitude: myAltitude.text,
+                    myGridSquare: myGridSquare.text,
+                    stationCallSign: stationCallSign.text,
+                    stationPlace: stationPlace.text,
+                    stationGridSquare: stationGridSquare.text,
+                    stationLocation: stationLocation.text,
+                    comment: comment.text,
+                }
+
+                logModel.insert(0, modelRow)
 
                 logModel.save();
 
