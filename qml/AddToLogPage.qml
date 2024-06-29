@@ -19,8 +19,9 @@
 import QtQuick 2.7
 import Lomiri.Components 1.3
 import Lomiri.Components.Pickers 1.3
-//import QtQuick.Controls 2.2
+import Lomiri.Components.Popups 1.3
 import QtQuick.Layouts 1.3
+//import QtQuick.Controls 2.2
 import "geom.js" as G
 import com.github.jmlich.qthlocator 1.0
 
@@ -60,10 +61,60 @@ Page {
             text: i18n.tr('Date and Time')
         }
 
-        TextField {
+        Component {
+            id: dateTimeDialogComponent
+            Dialog {
+                id: dateTimeDialog
+                title: i18n.tr("Select date and time")
+                DatePicker {
+                    id: datePicker
+                    mode: "Years|Months|Days"
+                    date: qsoDateTime.value
+                    minimum: {
+                        var d = new Date();
+                        d.setFullYear(d.getFullYear() - 20);
+                        return d;
+                    }
+                    maximum: {
+                        var d = new Date();
+                        d.setFullYear(d.getFullYear() + 20);
+                        return d;
+                    }
+                }
+
+                DatePicker {
+                    id: timePicker
+                    mode: "Hours|Minutes|Seconds"
+                    date: qsoDateTime.value
+                }
+
+                Button {
+                    text: i18n.tr("Set date and time")
+                    onClicked: {
+                        PopupUtils.close(dateTimeDialog)
+
+                        const year = datePicker.date.getFullYear();
+                        const month = datePicker.date.getMonth();
+                        const day = datePicker.date.getDate();
+
+                        const hours = timePicker.date.getHours();
+                        const minutes = timePicker.date.getMinutes();
+                        const seconds = timePicker.date.getSeconds();
+
+                        qsoDateTime.value = new Date(year, month, day, hours, minutes, seconds);
+
+                    }
+                }
+            }
+        }
+
+        Button {
             id: qsoDateTime
             property date value: new Date()
             text: value.toLocaleDateString(Qt.locale(), Locale.ShortFormat) + " " + value.toLocaleTimeString(Qt.locale, Locale.ShortFormat)
+            onClicked: {
+                onClicked: PopupUtils.open(dateTimeDialogComponent)
+            }
         }
 
         Label {
@@ -72,8 +123,8 @@ Page {
 
         TextField {
             id: band
-//            text: QthLocatorConfig.lastBand
-//            placeholderText: i18n.tr("e.g. PMR/UHF")
+            text: QthLocatorConfig.lastBand
+            placeholderText: i18n.tr("e.g. PMR/UHF")
         }
 
         Label {
@@ -82,7 +133,7 @@ Page {
 
         TextField {
             id: myCallSign
-//            text: QthLocatorConfig.lastMyCallSign
+            text: QthLocatorConfig.lastMyCallSign
         }
 
         Label {
@@ -91,8 +142,8 @@ Page {
 
         TextField {
             id: myLocation
-//            text: QthLocatorConfig.lastMyLocation
-//            placeholderText: i18n.tr("e.g. home/mobile/portable")
+            text: QthLocatorConfig.lastMyLocation
+            placeholderText: i18n.tr("e.g. home/mobile/portable")
         }
 
         Label {
@@ -101,8 +152,8 @@ Page {
 
         TextField {
             id: myPlace
-//            text: QthLocatorConfig.lastMyPlace
-//            placeholderText: i18n.tr("e.g. Mount Everest")
+            text: QthLocatorConfig.lastMyPlace
+            placeholderText: i18n.tr("e.g. Mount Everest")
         }
 
         Label {
@@ -110,7 +161,7 @@ Page {
         }
         TextField {
             id: myAltitude
-//            placeholderText: i18n.tr("in meters")
+            placeholderText: i18n.tr("in meters")
         }
 
 
@@ -121,7 +172,7 @@ Page {
             id: myGridSquare
             inputMethodHints: Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
             font.capitalization: Font.AllUppercase
-//            placeholderText: i18n.tr("e.g. JN89GE")
+            placeholderText: i18n.tr("e.g. JN89GE")
         }
 
 
@@ -141,8 +192,8 @@ Page {
 
         TextField {
             id: stationLocation
-//            text: QthLocatorConfig.lastStationLocation
-//            placeholderText: i18n.tr("e.g. home/mobile/portable")
+            text: QthLocatorConfig.lastStationLocation
+            placeholderText: i18n.tr("e.g. home/mobile/portable")
         }
 
         Label {
@@ -151,7 +202,7 @@ Page {
 
         TextField {
             id: stationPlace
-//            placeholderText: i18n.tr("e.g. Mont Blanc")
+            placeholderText: i18n.tr("e.g. Mont Blanc")
         }
 
 
@@ -163,7 +214,7 @@ Page {
             id: stationGridSquare
             inputMethodHints: Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
             font.capitalization: Font.AllUppercase
-//            placeholderText: i18n.tr("e.g. JN89GE")
+            placeholderText: i18n.tr("e.g. JN89GE")
         }
 
 
@@ -186,7 +237,7 @@ Page {
                 QthLocatorConfig.lastStationLocation = stationLocation.text
 
                 var modelRow = {
-                    qsoDateTime: qsoDateTime.value,
+                    qsoDateTime: qsoDateTime.value.toISOString(),
                     band: band.text,
                     myCallSign: myCallSign.text,
                     myLocation: myLocation.text,
