@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.jmlich.qthlocator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-22 19:57+0000\n"
+"POT-Creation-Date: 2024-06-29 18:04+0000\n"
 "PO-Revision-Date: 2024-06-23 07:16+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/jozef-mlich/teams/194311/nl/)\n"
@@ -21,54 +21,150 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../qml/Main.qml:39 qthlocator.desktop.in.h:1
+#: ../qml/AddToLogPage.qml:48
+msgid "Transmission detail"
+msgstr "Uitzendgegevens"
+
+#: ../qml/AddToLogPage.qml:61
+msgid "Date and Time"
+msgstr "Datum en tijd"
+
+#: ../qml/AddToLogPage.qml:68
+msgid "Select date and time"
+msgstr "Kies een datum en tijd"
+
+#: ../qml/AddToLogPage.qml:92
+msgid "Set date and time"
+msgstr "Datum en tijd instellen"
+
+#: ../qml/AddToLogPage.qml:121
+msgid "Band"
+msgstr "Band"
+
+#: ../qml/AddToLogPage.qml:127
+msgid "e.g. PMR/UHF"
+msgstr "bijv. PMR of UHF"
+
+#: ../qml/AddToLogPage.qml:131
+msgid "Your call sign"
+msgstr "Mijn bijnaam"
+
+#: ../qml/AddToLogPage.qml:140
+msgid "Your type"
+msgstr "Mijn type"
+
+#: ../qml/AddToLogPage.qml:146 ../qml/AddToLogPage.qml:196
+msgid "e.g. home/mobile/portable"
+msgstr "bijv. thuis, mobiel of draagbaar"
+
+#: ../qml/AddToLogPage.qml:150
+msgid "Your place"
+msgstr "Mijn locatie"
+
+#: ../qml/AddToLogPage.qml:156
+msgid "e.g. Mount Everest"
+msgstr "bijv. Mount Everest"
+
+#: ../qml/AddToLogPage.qml:160
+msgid "Your altitude"
+msgstr "Mijn hoogte"
+
+#: ../qml/AddToLogPage.qml:164
+msgid "in meters"
+msgstr "in meters"
+
+#: ../qml/AddToLogPage.qml:169
+msgid "Your locator"
+msgstr "Mijn locatiedienst"
+
+#: ../qml/AddToLogPage.qml:175 ../qml/AddToLogPage.qml:217
+msgid "e.g. JN89GE"
+msgstr "bijv. JN89GE"
+
+#: ../qml/AddToLogPage.qml:180
+msgid "Station call sign"
+msgstr "Stationsnaam"
+
+#: ../qml/AddToLogPage.qml:189
+msgid "Station type"
+msgstr "Stationstype"
+
+#: ../qml/AddToLogPage.qml:200
+msgid "Station place"
+msgstr "Stationslocatie"
+
+#: ../qml/AddToLogPage.qml:205
+msgid "e.g. Mont Blanc"
+msgstr "bijv. Mont Blanc"
+
+#: ../qml/AddToLogPage.qml:210
+msgid "Station Locator"
+msgstr "Stationslocatiedienst"
+
+#: ../qml/AddToLogPage.qml:222
+msgid "Comment"
+msgstr "Opmerking"
+
+#: ../qml/AddToLogPage.qml:230
+msgid "Save"
+msgstr "Opslaan"
+
+#: ../qml/LogPage.qml:29 ../qml/Main.qml:83
+msgid "Log"
+msgstr "Logboek"
+
+#: ../qml/Main.qml:79 qthlocator.desktop.in.h:1
 msgid "QTH Locator"
 msgstr "QTH-locatie"
 
-#: ../qml/Main.qml:54
+#: ../qml/Main.qml:103
 msgid "Current position"
 msgstr "Huidige locatie"
 
-#: ../qml/Main.qml:64
+#: ../qml/Main.qml:113
 msgid "Latitude: %1"
 msgstr "Breedtegraad: %1"
 
-#: ../qml/Main.qml:73
+#: ../qml/Main.qml:122
 msgid "Longitude: %1"
 msgstr "Lengtegraad: %1"
 
-#: ../qml/Main.qml:82
+#: ../qml/Main.qml:133
 msgid "QTH: %1"
 msgstr "QTH: %1"
 
-#: ../qml/Main.qml:92
+#: ../qml/Main.qml:143
 msgid "Find"
 msgstr "Zoeken"
 
-#: ../qml/Main.qml:117
+#: ../qml/Main.qml:170
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../qml/Main.qml:125
+#: ../qml/Main.qml:178
 msgid "Distance: %1 km"
 msgstr "Afstand: %1 km"
 
-#: ../qml/PinchMap.qml:364
+#: ../qml/Main.qml:188
+msgid "Add to log"
+msgstr "Noteren in logboek"
+
+#: ../qml/PinchMap.qml:336
 msgid "Ready"
 msgstr "Gereed"
 
-#: ../qml/PinchMap.qml:366
+#: ../qml/PinchMap.qml:339
 msgid "Not set"
 msgstr "Niet-ingesteld"
 
-#: ../qml/PinchMap.qml:368
+#: ../qml/PinchMap.qml:342
 msgid "Error"
 msgstr "Foutmelding"
 
-#: ../qml/PinchMap.qml:370
+#: ../qml/PinchMap.qml:345
 msgid "Loading ..."
 msgstr "Bezig met laden…"
 
-#: ../qml/PinchMap.qml:372
+#: ../qml/PinchMap.qml:348
 msgid "Unknown error"
 msgstr "Onbekende fout"
