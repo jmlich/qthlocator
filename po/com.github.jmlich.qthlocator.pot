@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.jmlich.qthlocator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-06 11:05+0000\n"
+"POT-Creation-Date: 2024-07-06 11:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,7 +105,7 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../qml/LogPage.qml:29 ../qml/Main.qml:84
+#: ../qml/LogPage.qml:31 ../qml/Main.qml:84
 msgid "Log"
 msgstr ""
 
@@ -134,10 +134,10 @@ msgid "Contacted Station (callsign, grid square)"
 msgstr ""
 
 #: ../qml/Main.qml:175
-msgid "Distance: %1 km"
+msgid "Distance: %1, Bearing: %2"
 msgstr ""
 
-#: ../qml/Main.qml:187
+#: ../qml/Main.qml:193
 msgid "Add to log"
 msgstr ""
 
