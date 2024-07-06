@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.jmlich.qthlocator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 18:04+0000\n"
+"POT-Creation-Date: 2024-07-06 11:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,43 +105,39 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../qml/LogPage.qml:29 ../qml/Main.qml:83
+#: ../qml/LogPage.qml:29 ../qml/Main.qml:84
 msgid "Log"
 msgstr ""
 
-#: ../qml/Main.qml:79 qthlocator.desktop.in.h:1
+#: ../qml/Main.qml:80 qthlocator.desktop.in.h:1
 msgid "QTH Locator"
 msgstr ""
 
-#: ../qml/Main.qml:103
-msgid "Current position"
+#: ../qml/Main.qml:104
+msgid "Your position"
 msgstr ""
 
-#: ../qml/Main.qml:113
+#: ../qml/Main.qml:114
 msgid "Latitude: %1"
 msgstr ""
 
-#: ../qml/Main.qml:122
+#: ../qml/Main.qml:123
 msgid "Longitude: %1"
 msgstr ""
 
-#: ../qml/Main.qml:133
+#: ../qml/Main.qml:134
 msgid "QTH: %1"
 msgstr ""
 
-#: ../qml/Main.qml:143
-msgid "Find"
+#: ../qml/Main.qml:144
+msgid "Contacted Station (callsign, grid square)"
 msgstr ""
 
-#: ../qml/Main.qml:170
-msgid "Search"
-msgstr ""
-
-#: ../qml/Main.qml:178
+#: ../qml/Main.qml:175
 msgid "Distance: %1 km"
 msgstr ""
 
-#: ../qml/Main.qml:188
+#: ../qml/Main.qml:187
 msgid "Add to log"
 msgstr ""
 
