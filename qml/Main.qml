@@ -63,6 +63,7 @@ MainView {
 
 
     Component.onCompleted: {
+        test_parse_variable_log_entry();
         logModel.load()
     }
 
@@ -100,7 +101,7 @@ MainView {
                 spacing: units.gu(0.5)
 
                 Label {
-                    text: i18n.tr('Current position')
+                    text: i18n.tr('Your position')
                     font.bold: true
                     anchors {
                         left: parent.left
@@ -140,7 +141,7 @@ MainView {
                 }
 
                 Label {
-                    text: i18n.tr('Find')
+                    text: i18n.tr('Contacted Station (callsign, grid square)')
                     font.bold: true
                     anchors {
                         left: parent.left
@@ -150,8 +151,9 @@ MainView {
                     }
                 }
                 TextField {
-                    id: targetLocator
+                    id: targetEntry
                     width: parent.width / 2
+                    placeholderText: "Pepa Kuřim p Vartovna JN89XG"
 
                     anchors {
                         left: parent.left
@@ -162,7 +164,7 @@ MainView {
 
                     onTextChanged: {
                         var regex = /([a-zA-Z]{2}\d{2}[a-zA-Z]{2}(\d{2})?)/;
-                        var match = regex.exec(targetLocator.text);
+                        var match = regex.exec(targetEntry.text);
                         if (match) {
                             map.setTargetLocator(match[1]);
                         }
@@ -179,16 +181,19 @@ MainView {
                     }
                 }
 
+
+
                 Button {
                     text: i18n.tr('Add to log')
-                    enabled: (targetLocator.text !== '') && (map.currentPositionShow)
+                    enabled: (targetEntry.text !== '') && (map.currentPositionShow)
                     onClicked: {
+                        var parsed = parse_variable_log_entry(targetEntry.text)
                         var record = {
                             qsoDateTime: new Date(),
                             myGridSquare: gpsLocator.gpsLocatorValue,
-                            stationGridSquare: targetLocator.text,
-                            myAltitude: positionSource.position.coordinate.altitude
+                            myAltitude: isNaN(positionSource.position.coordinate.altitude) ? '' : positionSource.position.coordinate.altitude
                         }
+                        record = Object.assign(record, parsed)
                         console.log("Open AddToLogPage: " + JSON.stringify(record, 0, 2));
                         pageStack.push(Qt.resolvedUrl('AddToLogPage.qml'), record);
                     }
@@ -234,4 +239,64 @@ MainView {
             }
         }
     }
+
+
+    function parse_variable_log_entry(input) {
+        var mod = input.replace(/\s([pPhHmM])\s/g, ' /$1 ');
+        // Regular expression to match the modified message with optional parts
+        var regex = /^([a-zA-Z0-9\s]+?)\s(\/[pPhHmM])?\s?([a-zA-Z\s]+)?([a-zA-Z]{2}\d{2}[a-zA-Z]{2})$/;
+        var result = regex.exec(mod);
+
+        if (result) {
+
+            var callSign = (result[1] || '').replace(/^\b\w+\b/g, function(word) {
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).trim();
+            var location = (result[3] || '').replace(/\b\w+\b/g, function(word) { // mont blanc is tranformed to Mont Blanc
+                    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+            }).trim();
+
+            var place = '';
+            if (result[2] == '/p' || result[2] == '/P') {
+                place = 'portable';
+            } else if (result[2] == '/h' || result[2] == '/h') {
+                place = 'home';
+            } else if (result[2] == '/m' || result[2] == '/M') {
+                place = 'mobile';
+            }
+
+            var dict = {
+                stationCallSign: callSign,
+                stationPlace: place, // portable | mobile | home
+                stationLocation: location,
+                stationGridSquare: (result[4] || '').toUpperCase(), // e.g. JN89GE
+            }
+        } else {
+            var dict = {
+                stationGridSquare: input,
+            }
+        }
+
+
+        return dict;
+    }
+
+function test_parse_variable_log_entry() {
+
+    var inputs = [
+        "pepa klobouky m holy vrch jn99bb",
+        "pepa kurim p rozhledna vartovna jn89xg",
+        "pepa kurim p vartovna jn89xg",
+        "pepa p vartovna jn89xg",
+        "pepa kurim p jn89xg",
+        "pepa kurim jn89xg",
+        "pepa jn89xg",
+        "jn89xg",
+    ]
+
+    for (var i = 0; i < inputs.length; i++) {
+        console.log ("inputs[" + i + "] = '" + inputs[i] + "' " + JSON.stringify(parse_variable_log_entry(inputs[i]), 0, 2))
+    }
+}
+
 }
