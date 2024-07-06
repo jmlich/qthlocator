@@ -149,27 +149,22 @@ MainView {
                         rightMargin: units.gu(2)
                     }
                 }
-                Row {
+                TextField {
+                    id: targetLocator
+                    width: parent.width / 2
+
                     anchors {
                         left: parent.left
                         leftMargin: units.gu(2)
                         right: parent.right
                         rightMargin: units.gu(2)
                     }
-                    TextField {
-                        id: targetLocator
-                        width: parent.width / 2
-                        inputMethodHints: Qt.ImhUppercaseOnly | Qt.ImhNoPredictiveText
-                        font.capitalization: Font.AllUppercase
-                        onAccepted: {
-                            map.setTargetLocator(targetLocator.text);
-                        }
-                    }
-                    Button {
-                        width: parent.width / 2
-                        text: i18n.tr('Search')
-                        onClicked: {
-                            map.setTargetLocator(targetLocator.text);
+
+                    onTextChanged: {
+                        var regex = /([a-zA-Z]{2}\d{2}[a-zA-Z]{2}(\d{2})?)/;
+                        var match = regex.exec(targetLocator.text);
+                        if (match) {
+                            map.setTargetLocator(match[1]);
                         }
                     }
                 }
