@@ -67,7 +67,7 @@ msgstr "např.: Mount Everest"
 
 #: ../qml/AddToLogPage.qml:160
 msgid "Your altitude"
-msgstr "Vaše výška"
+msgstr "Vaše nadm. výška"
 
 #: ../qml/AddToLogPage.qml:164
 msgid "in meters"
