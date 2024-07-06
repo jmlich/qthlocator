@@ -47,6 +47,8 @@ function formatDistance(d, settings) {
         } else {
             return d.toFixed(1) + " m"
         }
+    } else if (settings.distanceUnit === 'km') {
+        return Math.round(d / 1000.0) + " km"
     }
 }
 
@@ -435,6 +437,19 @@ function locatorToLatLon(locator) {
     lat2 -= 90;
 
     return [lon, lat, lon2, lat2];
+}
+
+function locatorDistance(loc1, loc2) {
+    var ll1 = locatorToLatLon(loc1) // [lon1, lat1, lon2, lat2]
+    var ll2 = locatorToLatLon(loc2)
+
+    return getDistanceTo((ll1[1]+ll1[3])/2, (ll1[0]+ll1[2])/2,(ll2[1]+ll2[3])/2, (ll2[0]+ll2[2])/2)
+}
+
+function locatorBearingTo(loc1, loc2) {
+    var ll1 = locatorToLatLon(loc1) // [lon1, lat1, lon2, lat2]
+    var ll2 = locatorToLatLon(loc2)
+    return getBearingTo((ll1[1]+ll1[3])/2, (ll1[0]+ll1[2])/2,(ll2[1]+ll2[3])/2, (ll2[0]+ll2[2])/2)
 }
 
 function testAll() {

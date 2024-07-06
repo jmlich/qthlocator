@@ -142,7 +142,7 @@ MainView {
 
                 Label {
                     text: i18n.tr('Contacted Station (callsign, grid square)')
-                    font.bold: true
+                font.bold: true
                     anchors {
                         left: parent.left
                         leftMargin: units.gu(2)
@@ -172,7 +172,13 @@ MainView {
                 }
 
                 Label {
-                    text: i18n.tr('Distance: %1 km').arg((map.currentPositionShow && map.targetRect.length > 0 && map.targetRect[0] != 0 && map.targetRect[1] != 0) ? Math.round(G.getDistanceTo(map.currentPositionLat, map.currentPositionLon, (map.targetRect[1] + map.targetRect[3]) / 2, (map.targetRect[0] + map.targetRect[2]) / 2) / 1000.0) : '??')
+                    text: i18n.tr('Distance: %1, Bearing: %2').arg(
+                        (map.currentPositionShow && map.targetRect.length > 0 && map.targetRect[0] != 0 && map.targetRect[1] != 0)
+                        ? G.formatDistance(G.getDistanceTo(map.currentPositionLat, map.currentPositionLon, (map.targetRect[1] + map.targetRect[3]) / 2, (map.targetRect[0] + map.targetRect[2]) / 2), {distanceUnit: 'km'})
+                        : '-').arg(
+                        (map.currentPositionShow && map.targetRect.length > 0 && map.targetRect[0] != 0 && map.targetRect[1] != 0)
+                        ? G.formatBearing(G.getBearingTo(map.currentPositionLat, map.currentPositionLon, (map.targetRect[1] + map.targetRect[3]) / 2, (map.targetRect[0] + map.targetRect[2]) / 2) )
+                        : '-')
                     anchors {
                         left: parent.left
                         leftMargin: units.gu(2)

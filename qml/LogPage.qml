@@ -18,6 +18,8 @@
 
 import QtQuick 2.7
 import Lomiri.Components 1.3
+import "geom.js" as G
+
 
 //import QtQuick.Controls 2.2
 
@@ -53,7 +55,11 @@ Page {
                 title.text: 
                     myGridSquare + (( myGridSquare != "" && stationGridSquare != "") ? " → " : "" ) + stationGridSquare
                     + ((stationCallSign != "") ? " (" + stationCallSign + ")" : "")
-                subtitle.text: qsoDateTime
+                subtitle.text: qsoDateTime.toLocaleString(Qt.locale()) +
+                    (( myGridSquare != "" && stationGridSquare != "")
+                        ? " | "+ G.formatDistance(G.locatorDistance(myGridSquare, stationGridSquare), {distanceUnit: 'km'}) + " | "
+                            + G.formatBearing(G.locatorBearingTo(myGridSquare, stationGridSquare))
+                        : "" )
                 summary.text: comment
             }
             onClicked: {
