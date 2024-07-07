@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.jmlich.qthlocator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-29 18:04+0000\n"
+"POT-Creation-Date: 2024-07-06 11:36+0000\n"
 "PO-Revision-Date: 2024-06-23 07:16+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/jozef-mlich/teams/194311/nl/)\n"
@@ -109,43 +109,39 @@ msgstr "Opmerking"
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../qml/LogPage.qml:29 ../qml/Main.qml:83
+#: ../qml/LogPage.qml:31 ../qml/Main.qml:84
 msgid "Log"
 msgstr "Logboek"
 
-#: ../qml/Main.qml:79 qthlocator.desktop.in.h:1
+#: ../qml/Main.qml:80 qthlocator.desktop.in.h:1
 msgid "QTH Locator"
 msgstr "QTH-locatie"
 
-#: ../qml/Main.qml:103
-msgid "Current position"
-msgstr "Huidige locatie"
+#: ../qml/Main.qml:104
+msgid "Your position"
+msgstr "Mijn locatie"
 
-#: ../qml/Main.qml:113
+#: ../qml/Main.qml:114
 msgid "Latitude: %1"
 msgstr "Breedtegraad: %1"
 
-#: ../qml/Main.qml:122
+#: ../qml/Main.qml:123
 msgid "Longitude: %1"
 msgstr "Lengtegraad: %1"
 
-#: ../qml/Main.qml:133
+#: ../qml/Main.qml:134
 msgid "QTH: %1"
 msgstr "QTH: %1"
 
-#: ../qml/Main.qml:143
-msgid "Find"
-msgstr "Zoeken"
+#: ../qml/Main.qml:144
+msgid "Contacted Station (callsign, grid square)"
+msgstr "Gecontacteerd station (roepletters)"
 
-#: ../qml/Main.qml:170
-msgid "Search"
-msgstr "Zoeken"
+#: ../qml/Main.qml:175
+msgid "Distance: %1, Bearing: %2"
+msgstr "Afstand: %1 - Reikwijdte: %2"
 
-#: ../qml/Main.qml:178
-msgid "Distance: %1 km"
-msgstr "Afstand: %1 km"
-
-#: ../qml/Main.qml:188
+#: ../qml/Main.qml:193
 msgid "Add to log"
 msgstr "Noteren in logboek"
 
