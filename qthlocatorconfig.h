@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVariant>
 #include <QDate>
+#include <QTimeZone>
 
 #include <QSettings>
 class QQmlEngine;
@@ -31,6 +32,9 @@ class QJSEngine;
 
 #define STRING_OPTION(key, name, setter, def) \
     OPTION(key, name, setter, def, QString, toString, const QString &)
+
+#define DATETIME_OPTION(key, name, setter, def) \
+    OPTION(key, name, setter, def, QDateTime, toDateTime, QDateTime)
 
 #define ENUM_OPTION(key, name, setter, type, def)                               \
     Q_PROPERTY(type name READ name WRITE setter NOTIFY name##Changed)           \
@@ -71,7 +75,7 @@ public:
     STRING_OPTION(QStringLiteral("lastMyCallSign"), lastMyCallSign, setLastMyCallSign, QString(""))
     STRING_OPTION(QStringLiteral("lastMyLocation"), lastMyLocation, setLastMyLocation, QString("portable"))
     STRING_OPTION(QStringLiteral("lastMyPlace"), lastMyPlace, setLastMyPlace, QString(""))
-    STRING_OPTION(QStringLiteral("lastStationLocation"), lastStationLocation, setLastStationLocation, QString("portable"))
+    DATETIME_OPTION(QStringLiteral("maxLogEntry"), maxLogEntry, setMaxLogEntry, QDateTime(QDate(2020, 1, 1), QTime(0, 0, 0)))
 
 private:
     using signal_ptr = void(QthLocatorConfig::*)();

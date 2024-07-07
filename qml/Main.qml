@@ -231,7 +231,7 @@ MainView {
 
     PositionSource {
         id: positionSource
-        updateInterval: 1000
+        updateInterval: 5000
         active: true
 
         onPositionChanged: {

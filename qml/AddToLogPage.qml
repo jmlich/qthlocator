@@ -152,7 +152,7 @@ Page {
 
         TextField {
             id: myPlace
-            text: QthLocatorConfig.lastMyPlace
+            text: (new Date(QthLocatorConfig.maxLogEntry).toDateString() === new Date(qsoDateTime.value).toDateString()) ? QthLocatorConfig.lastMyPlace : ''
             placeholderText: i18n.tr("e.g. Mount Everest")
         }
 
@@ -192,7 +192,6 @@ Page {
 
         TextField {
             id: stationLocation
-            text: QthLocatorConfig.lastStationLocation
             placeholderText: i18n.tr("e.g. home/mobile/portable")
         }
 
@@ -230,12 +229,6 @@ Page {
             text: i18n.tr('Save')
             onClicked: {
 
-                QthLocatorConfig.lastBand = band.text
-                QthLocatorConfig.lastMyCallSign = myCallSign.text
-                QthLocatorConfig.lastMyLocation = myLocation.text
-                QthLocatorConfig.lastMyPlace = myPlace.text
-                QthLocatorConfig.lastStationLocation = stationLocation.text
-
                 var modelRow = {
                     qsoDateTime: qsoDateTime.value.toISOString(),
                     band: band.text,
@@ -251,13 +244,24 @@ Page {
                     comment: comment.text,
                 }
 
+                if ((qsoDateTime.value > QthLocatorConfig.maxLogEntry) && qsoDateTime.value < new Date()) {
+                    console.log("storing new values into cache" + JSON.stringify(modelRow, 0, 2))
+
+                    var myPlaceText = myPlace.text // there were strange behaviour when Config value wasn't updated for some reason
+
+                    QthLocatorConfig.maxLogEntry = qsoDateTime.value
+                    QthLocatorConfig.lastBand = band.text
+                    QthLocatorConfig.lastMyCallSign = myCallSign.text
+                    QthLocatorConfig.lastMyLocation = myLocation.text
+                    QthLocatorConfig.lastMyPlace = myPlaceText
+
+                }
+
                 if (rowIndex < 0) {
                     logModel.insert(0, modelRow)
                 } else {
                     logModel.set(rowIndex, modelRow)
                 }
-
-
 
                 logModel.save();
 
