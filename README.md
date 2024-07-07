@@ -13,7 +13,10 @@ This application calculates the Maidenhead Locator System (also known as QTH Loc
 
 ## Usage
 
-On the main screen, you will find an entry field where you can enter a location in grid square coordinates. This field supports various types of input which are directly shown on the screen. The types of input include:
+On the main screen, you will find an entry field where you can enter a grid square locator. This locator is immediately displayed on the screen. 
+You can also enter a complete sentence into the same field, which will populate the transmission log entry page.
+
+The sentence format includes:
 
 * Callsign: A unique identifier assigned to a radio station.
 * Station Location: This can be `p` (portable), `m` (mobile), or `h` (home), representing the type of station.
