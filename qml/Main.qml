@@ -131,7 +131,7 @@ MainView {
                 Label {
                     id: gpsLocator
                     property string gpsLocatorValue: map.currentPositionShow ? G.calcLocator(map.currentPositionLon, map.currentPositionLat) : ''
-                    text: i18n.tr('QTH: %1').arg(gpsLocatorValue)
+                    text: i18n.tr('QTH: <b>%1</b>%2').arg(gpsLocatorValue.substring(0, 6)).arg(gpsLocatorValue.substring(6))
                     anchors {
                         left: parent.left
                         leftMargin: units.gu(2)
@@ -153,7 +153,7 @@ MainView {
                 TextField {
                     id: targetEntry
                     width: parent.width / 2
-                    placeholderText: "Pepa Kuřim p Vartovna JN89XG"
+                    placeholderText: "Pepa Kuřim p Vartovna JN8.XG"
 
                     anchors {
                         left: parent.left
