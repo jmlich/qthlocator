@@ -23,6 +23,7 @@ jobs:
     - name: Upload .click package
       uses: actions/upload-artifact@v4
       with:
+        name: click-${{ matrix.arch }}
         path: build/*/app/*.click
     - name: Publish to Open Store
       if: startsWith( github.ref, 'refs/tags/')
