@@ -321,7 +321,7 @@ Rectangle {
             }
         }
 
-        console.log("cache miss ("+imageCache.length+"): " + imageUrl )
+        // console.log("cache miss ("+imageCache.length+"): " + imageUrl )
         var newImage = Qt.createQmlObject(
             'import QtQuick 2.7;
                 Image {
