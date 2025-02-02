@@ -198,6 +198,7 @@ Rectangle {
         var l = getCenter();
         longitude = l[1];
         latitude = l[0];
+        cleanCache();
         canvas.requestPaint();
     }
 
@@ -307,8 +308,45 @@ Rectangle {
     }
 
     function tileUrl(tx, ty) {
-        return tileUrlMultiple(tx, ty, url, true);
+        var imageUrl = tileUrlMultiple(tx, ty, url, true)
+        for (var i = 0; i < imageCache.length; i++) {
+            if (imageCache[i].cacheUrl === imageUrl) {
+                // console.log("Cache hit:", imageUrl)
+                imageCache[i].lastHit = new Date();
+                return imageCache[i].source
+            }
+        }
+
+        console.log("cache miss ("+imageCache.length+"): " + imageUrl )
+        var newImage = Qt.createQmlObject(
+            'import QtQuick 2.15;
+                Image {
+                    property var lastHit: new Date();
+                    property string cacheUrl: "'+imageUrl+'";
+                    visible: false;
+                    source: "' + imageUrl + '"
+                }', parent, "dynamicImage")
+        imageCache.push(newImage)
+        return newImage.source;
     }
+
+    function cleanCache() {
+        if (imageCache.length < 100) {
+            return;
+        }
+        var someTimeAgo = new Date().getTime() - 60000;
+
+        for (var i = 0; i < imageCache.length; i++) {
+            if (imageCache[i].lastHit.getTime() < someTimeAgo) {
+                // console.log("Removing stale cache item: " + imageCache[i].cacheUrl);
+                imageCache[i].destroy();
+                imageCache.splice(i, 1);
+            }
+        }
+        console.log("after cleanup imageCache.length: " + imageCache.length)
+    }
+
+    property var imageCache: []
 
     function tileUrlMultiple(tx, ty, baseUrl, first) {
         if ((baseUrl === undefined) || (baseUrl === "")) {
