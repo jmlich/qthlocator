@@ -319,7 +319,7 @@ Rectangle {
 
         console.log("cache miss ("+imageCache.length+"): " + imageUrl )
         var newImage = Qt.createQmlObject(
-            'import QtQuick 2.15;
+            'import QtQuick 2.7;
                 Image {
                     property var lastHit: new Date();
                     property string cacheUrl: "'+imageUrl+'";
