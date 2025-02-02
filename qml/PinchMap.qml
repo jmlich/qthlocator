@@ -124,6 +124,10 @@ Rectangle {
         }
     }
 
+    onZoomLevelIntChanged: {
+        cleanCache(true);
+    }
+
     function setZoomLevel(z) {
         setZoomLevelPoint(z, pinchmap.width / 2, pinchmap.height / 2);
     }
@@ -330,8 +334,16 @@ Rectangle {
         return newImage.source;
     }
 
-    function cleanCache() {
-        if (imageCache.length < 100) {
+    function cleanCache(force = false) {
+        if (force) {
+            for (var i = 0; i < imageCache.length; i++) {
+                    imageCache[i].destroy();
+
+            }
+            imageCache = [];
+            return;
+        }
+        if (imageCache.length < 50) {
             return;
         }
         var someTimeAgo = new Date().getTime() - 60000;
