@@ -4,16 +4,16 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Heimen Stoffels <vistausss@fastmail.com>, 2024
+# Heimen Stoffels <vistausss@fastmail.com>, 2025
 # 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.jmlich.qthlocator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-06 11:36+0000\n"
+"POT-Creation-Date: 2025-02-02 11:11+0000\n"
 "PO-Revision-Date: 2024-06-23 07:16+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>, 2024\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>, 2025\n"
 "Language-Team: Dutch (https://app.transifex.com/jozef-mlich/teams/194311/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,7 +53,7 @@ msgstr "Mijn bijnaam"
 msgid "Your type"
 msgstr "Mijn type"
 
-#: ../qml/AddToLogPage.qml:146 ../qml/AddToLogPage.qml:196
+#: ../qml/AddToLogPage.qml:146 ../qml/AddToLogPage.qml:195
 msgid "e.g. home/mobile/portable"
 msgstr "bijv. thuis, mobiel of draagbaar"
 
@@ -77,7 +77,7 @@ msgstr "in meters"
 msgid "Your locator"
 msgstr "Mijn locatiedienst"
 
-#: ../qml/AddToLogPage.qml:175 ../qml/AddToLogPage.qml:217
+#: ../qml/AddToLogPage.qml:175 ../qml/AddToLogPage.qml:216
 msgid "e.g. JN89GE"
 msgstr "bijv. JN89GE"
 
@@ -89,23 +89,23 @@ msgstr "Stationsnaam"
 msgid "Station type"
 msgstr "Stationstype"
 
-#: ../qml/AddToLogPage.qml:200
+#: ../qml/AddToLogPage.qml:199
 msgid "Station place"
 msgstr "Stationslocatie"
 
-#: ../qml/AddToLogPage.qml:205
+#: ../qml/AddToLogPage.qml:204
 msgid "e.g. Mont Blanc"
 msgstr "bijv. Mont Blanc"
 
-#: ../qml/AddToLogPage.qml:210
+#: ../qml/AddToLogPage.qml:209
 msgid "Station Locator"
 msgstr "Stationslocatiedienst"
 
-#: ../qml/AddToLogPage.qml:222
+#: ../qml/AddToLogPage.qml:221
 msgid "Comment"
 msgstr "Opmerking"
 
-#: ../qml/AddToLogPage.qml:230
+#: ../qml/AddToLogPage.qml:229
 msgid "Save"
 msgstr "Opslaan"
 
@@ -130,8 +130,8 @@ msgid "Longitude: %1"
 msgstr "Lengtegraad: %1"
 
 #: ../qml/Main.qml:134
-msgid "QTH: %1"
-msgstr "QTH: %1"
+msgid "QTH: <b>%1</b>%2"
+msgstr "QTH: <b>%1</b>%2"
 
 #: ../qml/Main.qml:144
 msgid "Contacted Station (callsign, grid square)"
@@ -145,22 +145,22 @@ msgstr "Afstand: %1 - Reikwijdte: %2"
 msgid "Add to log"
 msgstr "Noteren in logboek"
 
-#: ../qml/PinchMap.qml:336
+#: ../qml/PinchMap.qml:386
 msgid "Ready"
 msgstr "Gereed"
 
-#: ../qml/PinchMap.qml:339
+#: ../qml/PinchMap.qml:389
 msgid "Not set"
 msgstr "Niet-ingesteld"
 
-#: ../qml/PinchMap.qml:342
+#: ../qml/PinchMap.qml:392
 msgid "Error"
 msgstr "Foutmelding"
 
-#: ../qml/PinchMap.qml:345
+#: ../qml/PinchMap.qml:395
 msgid "Loading ..."
 msgstr "Bezig met laden…"
 
-#: ../qml/PinchMap.qml:348
+#: ../qml/PinchMap.qml:398
 msgid "Unknown error"
 msgstr "Onbekende fout"
