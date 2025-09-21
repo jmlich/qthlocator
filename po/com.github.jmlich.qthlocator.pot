@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.jmlich.qthlocator\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-06 11:36+0000\n"
+"POT-Creation-Date: 2025-02-02 11:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgstr ""
 msgid "Your type"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:146 ../qml/AddToLogPage.qml:196
+#: ../qml/AddToLogPage.qml:146 ../qml/AddToLogPage.qml:195
 msgid "e.g. home/mobile/portable"
 msgstr ""
 
@@ -73,7 +73,7 @@ msgstr ""
 msgid "Your locator"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:175 ../qml/AddToLogPage.qml:217
+#: ../qml/AddToLogPage.qml:175 ../qml/AddToLogPage.qml:216
 msgid "e.g. JN89GE"
 msgstr ""
 
@@ -85,23 +85,23 @@ msgstr ""
 msgid "Station type"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:200
+#: ../qml/AddToLogPage.qml:199
 msgid "Station place"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:205
+#: ../qml/AddToLogPage.qml:204
 msgid "e.g. Mont Blanc"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:210
+#: ../qml/AddToLogPage.qml:209
 msgid "Station Locator"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:222
+#: ../qml/AddToLogPage.qml:221
 msgid "Comment"
 msgstr ""
 
-#: ../qml/AddToLogPage.qml:230
+#: ../qml/AddToLogPage.qml:229
 msgid "Save"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgid "Longitude: %1"
 msgstr ""
 
 #: ../qml/Main.qml:134
-msgid "QTH: %1"
+msgid "QTH: <b>%1</b>%2"
 msgstr ""
 
 #: ../qml/Main.qml:144
@@ -141,22 +141,22 @@ msgstr ""
 msgid "Add to log"
 msgstr ""
 
-#: ../qml/PinchMap.qml:336
+#: ../qml/PinchMap.qml:386
 msgid "Ready"
 msgstr ""
 
-#: ../qml/PinchMap.qml:339
+#: ../qml/PinchMap.qml:389
 msgid "Not set"
 msgstr ""
 
-#: ../qml/PinchMap.qml:342
+#: ../qml/PinchMap.qml:392
 msgid "Error"
 msgstr ""
 
-#: ../qml/PinchMap.qml:345
+#: ../qml/PinchMap.qml:395
 msgid "Loading ..."
 msgstr ""
 
-#: ../qml/PinchMap.qml:348
+#: ../qml/PinchMap.qml:398
 msgid "Unknown error"
 msgstr ""
